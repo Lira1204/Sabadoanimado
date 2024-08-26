@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carros</title>
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <h1>Lista de Carros</h1>
+    <table>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+
+        </tr>
+        @foreach (var concessionaria in Model.carros)
+        {
+            <tr>
+                <td>@concessionaria.marca</td>
+                <td>@concessionaria.modelo</td>
+                <td>@concessionaria.ano</td>
+                <td>@concessionaria.preco</td>
+                <td>@concessionaria.estoque</td>
+            </tr>
+
+            <form method="post" asp-page-handler="Delete" asp-route-id="@concessionaria.id">
+                <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este registro?');"> 
+                    Deletar
+                </button>
+            </form>
+        }
+    </table>
+</body>
+</html> 
