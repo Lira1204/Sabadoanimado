@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="/css/site.css" />
 </head>
 <body>
-    <h1>Lista de Carros</h1>
-    <table>
-        <tr>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Ano</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-
-        </tr>
+    <h1>Carros cadastrados</h1>
+   <table>
+    <tr>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Ano</th>
+        <th>Preço</th>
+        <th>Estoque</th>
+        <th>Ações</th> 
+    </tr>
         @foreach (var concessionaria in Model.carros)
         {
             <tr>
@@ -26,14 +26,17 @@
                 <td>@concessionaria.ano</td>
                 <td>@concessionaria.preco</td>
                 <td>@concessionaria.estoque</td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@concessionaria.id">
+                        <button class="apagar" type="submit" onclick="return confirm('Tem certeza que deseja deletar este registro?');"> 
+                            Deletar 
+                        </button>
+                    </form>
+                </td>
             </tr>
-
-            <form method="post" asp-page-handler="Delete" asp-route-id="@concessionaria.id">
-                <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este registro?');"> 
-                    Deletar
-                </button>
-            </form>
         }
-    </table>
+</table>
+   
 </body>
+
 </html> 
